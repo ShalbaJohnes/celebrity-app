@@ -1,23 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./index.css";
+import CelebrityList from "./components/CelebrityList";
+import AddCelebrityForm from "./components/AddCelebrityForm";
 
 function App() {
+  // Initial celebrity list
+  const [celebrities, setCelebrities] = useState([
+    "Tom Hanks",
+    "Scarlett Johansson",
+    "Dwayne Johnson",
+  ]);
+
+  // Function to add a new celebrity
+  const addCelebrity = (name) => {
+    setCelebrities([...celebrities, name]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="max-w-md mx-auto p-6">
+      {/* Header */}
+      <h1 className="text-4xl font-bold text-center text-indigo-600 mb-6">
+        A-List Celebrities
+      </h1>
+
+      {/* Form to add new celebrity */}
+      <AddCelebrityForm addCelebrity={addCelebrity} />
+
+      {/* List of celebrities */}
+      <CelebrityList celebrities={celebrities} />
     </div>
   );
 }
